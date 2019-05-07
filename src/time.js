@@ -1,43 +1,37 @@
-var _ = require('lodash');
 var jStat = require('jStat').jStat;
 var hist = require('histogramjs')
 
-// var TimeMeasures = {
-//   getAll: function(points){
-//     var stats = {
-//       MHR: this.getMHR(points),
-//       NN50: this.getNN(points,50),
-//       pNN50: this.getPNN(points,50),
-//       NN20: this.getNN(points,20),
-//       pNN20: this.getPNN(points,20),
-//       MRR: this.getMRR(points),
-//       SDNN: this.getSDNN(points),
-//       SDSD: this.getSDSD(points),
-//       RMSSD: this.getRMSSD(points),
-//       LogRMSSD10x2: this.getLogRMSSD10x2(points),
-//       IRRR: this.getIRRR(points),
-//       MADRR: this.getMADRR(points),
-//     }
-//     return stats;
-//   },
-
-
-export const IRRR = (points) => {
-  let diffs = jStat.diff(points)
+/**
+ * IRRR - interquartile range of RR 
+ * unit : ms
+ *
+ * @param {Array} intervals
+ * @public
+ */
+export const IRRR = (intervals) => {
+  let diffs = jStat.diff(intervals)
   let quartiles = jStat.quartiles(diffs)
   return quartiles[2] - quartiles[0]
 }
-export const MADRR = (points) => {
-  let diffs = jStat.diff(points)
+
+/**
+ * MADRR - median of the absolute differences of 
+ * unit : ms
+ *
+ * @param {Array} intervals
+ * @public
+ */
+export const MADRR = (intervals) => {
+  let diffs = jStat.diff(intervals)
   return jStat.median(jStat.abs(diffs))
 }
 
-export const NN = (points,diff) => {
+export const NN = (intervals,diff) => {
   var nn = 0;
-  points.forEach(function(val,i,points){
+  intervals.forEach(function(val,i,intervals){
     //Nothing to do on first RR Interval
     if(i === 0) return;
-    var pointDiff = Math.abs(points[i]-points[i-1]);
+    var pointDiff = Math.abs(intervals[i]-intervals[i-1]);
     if(pointDiff > diff){
       nn += 1;
     }
@@ -45,38 +39,74 @@ export const NN = (points,diff) => {
   return nn;
 }
 
-export const PNN = (points,diff) => {
-  var nn = NN(points,diff);
-  var pNN = (nn/(points.length -1)) * 100;
+export const PNN = (intervals,diff) => {
+  var nn = NN(intervals,diff);
+  var pNN = (nn/(intervals.length -1)) * 100;
   return pNN;
 }
 
-export const MRR = (points) => {
-  return jStat.mean(points)
+/**
+ * MRR - mean RR interval
+ * unit : ms
+ *
+ * @param {Array} intervals
+ * @public
+ */
+export const MRR = (intervals) => {
+  return jStat.mean(intervals)
 }
 
-export const MHR = (points) => {
-  var MRR = MRR(points);
+/**
+ * MRR - mean heart rate
+ * unit : bpm
+ *
+ * @param {Array} intervals
+ * @public
+ */
+export const MHR = (intervals) => {
+  var MRR = MRR(intervals);
   var MHR = (60000/MRR) ;
   return MHR;
 }
 
-export const SDNN = (points) => {
-  return jStat.stdev(points)
+/**
+ * SDNN - Standard deviation of NN intervals
+ * unit : ms
+ *
+ * @param {Array} intervals
+ * @public
+ */
+export const SDNN = (intervals) => {
+  return jStat.stdev(intervals)
 }
 
-export const SDSD = (points) => {
-  let diffs = jStat.diff(points)
+
+/**
+ * SDSD - standard deviation of successive RR intervals
+ * unit : ms
+ *
+ * @param {Array} intervals
+ * @public
+ */
+export const SDSD = (intervals) => {
+  let diffs = jStat.diff(intervals)
   return jStat.stdev(diffs)
 }
 
-export const RMSSD = (points) => {
-  let diffs = jStat.diff(points)
+/**
+ * RMSSD - Root mean square of successive RR interval differences
+ * unit : ms
+ *
+ * @param {Array} intervals
+ * @public
+ */
+export const RMSSD = (intervals) => {
+  let diffs = jStat.diff(intervals)
   let diffsSquared = jStat.pow(diffs,2)
   let rmssd = Math.sqrt(jStat.mean(diffsSquared))
   return rmssd;
 }
 
-export const LogRMSSD10x2 = (points) => {
-  return 10*2*Math.log(RMSSD(points));
+export const LogRMSSD10x2 = (intervals) => {
+  return 10*2*Math.log(RMSSD(intervals));
 }
