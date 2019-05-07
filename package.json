@@ -1,0 +1,38 @@
+{
+  "name": "heart-rate-variability-analysis",
+  "version": "0.0.0",
+  "description": "Heart rate variability analysis",
+  "author": "Luka Kakia",
+  "license": "MIT",
+  "repository": "manguluka/heart-rate-variability-analysis",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js",
+  "dependencies": {
+    "histogramjs": "0.0.1",
+    "jStat": "^1.7.1",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-jest": "^24.7.1",
+    "documentation": "^10.1.0",
+    "jest": "^24.7.1",
+    "rollup": "^1.10.1",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^4.2.3"
+  },
+  "scripts": {
+    "now-build": "yarn docs",
+    "docs": " documentation build src/** -f html -o docs",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test-integration": "jest int.test",
+    "test-unit": "jest unit.test"
+  },
+  "files": [
+    "dist"
+  ]
+}
