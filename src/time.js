@@ -64,8 +64,8 @@ export const MRR = (intervals) => {
  * @public
  */
 export const MHR = (intervals) => {
-  var MRR = MRR(intervals);
-  var MHR = (60000/MRR) ;
+  let mRR = MRR(intervals);
+  let MHR = (60000/mRR) ;
   return MHR;
 }
 
