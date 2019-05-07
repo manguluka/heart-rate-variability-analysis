@@ -6,7 +6,9 @@ it("We can check if the consumer called the class constructor", () => {
 });
 
 describe("Time Domain Measures:", function() {
-	// var Time = require('../../src/Time');
+	it("should return a correct MHR value", () => {
+		expect(Time.MHR(intervalArray)).toBe(64.05656762687659);
+	});
 	it("should return a correct MRR value", () => {
 		expect(Time.MRR(intervalArray)).toBe(936.6721044045677);
 	});
