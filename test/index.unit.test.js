@@ -13,7 +13,7 @@ describe("Time Domain Measures:", function() {
 		expect(Time.MRR(intervalArray)).toBe(936.6721044045677);
 	});
 	it("should return a correct pNN50 value", () => {
-		expect(Time.PNN(intervalArray, 50)).toBe(52.94117647058824);
+		expect(Time.PNN50(intervalArray)).toBe(52.94117647058824);
 	});
 	it("should return a correct SDNN value", () => {
 		expect(Time.SDNN(intervalArray)).toBe(195.72192501053422);
