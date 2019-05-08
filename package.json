@@ -1,6 +1,6 @@
 {
   "name": "@avihimsa/heart-rate-variability-analysis",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Heart rate variability analysis",
   "author": "Luka Kakia",
   "license": "MIT",
@@ -26,7 +26,7 @@
   },
   "scripts": {
     "now-build": "yarn docs",
-    "pre-publish": "yarn build",
+    "prepublish": "yarn build",
     "docs": " documentation build src/** -f html -o docs",
     "build": "rollup -c",
     "dev": "rollup -c -w",
