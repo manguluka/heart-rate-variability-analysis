@@ -1,10 +1,6 @@
 import * as Time from "../src/time";
 import { intervalArray } from "./data";
 
-it("We can check if the consumer called the class constructor", () => {
-	expect(true).toBe(true);
-});
-
 describe("Time Domain Measures:", function() {
 	it("should return a correct MHR value", () => {
 		expect(Time.MHR(intervalArray)).toBe(64.05656762687659);
