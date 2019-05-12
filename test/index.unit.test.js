@@ -1,5 +1,15 @@
 import * as Time from "../src/time";
+import * as Geometric from "../src/geometric";
 import { intervalArray } from "./data";
+
+describe('Geometric Measures:', function () {
+  it('should return a correct TINN value', () => {
+    expect(Geometric.TINN(intervalArray)).toBe(319.2708333333333)
+  });
+  it('should return a correct RRTri value', () => {
+    expect(Geometric.RRTri(intervalArray)).toBe(40.86666666666667)
+  });
+});
 
 describe("Time Domain Measures:", function() {
 	it("should return a correct MHR value", () => {
