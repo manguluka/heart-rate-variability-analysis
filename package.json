@@ -1,7 +1,7 @@
 {
   "name": "@avihimsa/heart-rate-variability-analysis",
-  "version": "0.0.4",
-  "description": "Heart rate variability analysis",
+  "version": "0.1.0",
+  "description": "Common Heart rate variability (HRV) analysis metrics",
   "author": "Luka Kakia",
   "license": "MIT",
   "repository": "manguluka/heart-rate-variability-analysis",
