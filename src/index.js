@@ -1,2 +1,3 @@
 import * as Time from "./time";
-export { Time };
+import * as Geometric from "./time";
+export { Time, Geometric };
