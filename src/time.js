@@ -2,7 +2,7 @@ var jStat = require("jStat").jStat;
 var hist = require("histogramjs");
 
 /**
- * interquartile range of RR
+ * Interquartile range of RR
  * unit : ms
  *
  * @param {Array} intervals
@@ -15,7 +15,7 @@ export const IRRR = intervals => {
 };
 
 /**
- * median of the absolute differences of
+ * M of the absolute differences of RR intervals
  * unit : ms
  *
  * @param {Array} intervals
@@ -95,7 +95,7 @@ export const SDNN = intervals => {
 };
 
 /**
- * standard deviation of successive RR intervals
+ * Standard deviation of successive RR intervals
  * unit : ms
  *
  * @param {Array} intervals
@@ -107,7 +107,7 @@ export const SDSD = intervals => {
 };
 
 /**
- * RMSSD - Root mean square of successive RR interval differences
+ * Root mean square of successive RR interval differences
  * unit : ms
  *
  * @param {Array} intervals

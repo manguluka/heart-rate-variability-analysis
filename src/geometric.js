@@ -30,7 +30,7 @@ export const TINN = intervals => {
 };
 
 /**
- * Triangular index
+ * Triangular index of RR intervals
  *
  * @param {Array} intervals
  * @public
